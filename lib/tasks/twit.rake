@@ -58,7 +58,7 @@ task :answer_queries => [:environment] do
   queries = Query.needs_reply.find(:all, :order => "to_user DESC, id DESC", :limit => limit)
   exit if queries.empty?
 
-  t= Twitter::Base.new('magic8bot','***REMOVED***')
+  t= Twitter::Base.new(ENV['TWITTER_USER'],ENV['TWITTER_PASSWORD'])
   queries.each do |q|
 
     options = {
